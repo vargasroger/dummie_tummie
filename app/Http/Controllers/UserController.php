@@ -81,6 +81,7 @@ class UserController extends Controller
     {
         $this->rules['email'] .= ',' . $user->id;
         unset($this->rules['password']);
+        
         $this->validate($request, $this->rules);
 
         try {
