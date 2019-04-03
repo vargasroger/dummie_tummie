@@ -13,7 +13,7 @@ class UserController extends Controller
         'first_name' => 'required|string|min:3|max:100',
         'last_name' => 'required|string|min:3|max:100',
         'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6'
+        'password' => 'required'
     ];
 
     public function __construct()
@@ -73,15 +73,14 @@ class UserController extends Controller
     public function edit(User $user)
     {
         unset($user->password);
-        
+
         return view('users.edit')->with(compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
         $this->rules['email'] .= ',' . $user->id;
-        $this->rules['password'] = 'string|min:6';
-
+        unset($this->rules['password']);
         $this->validate($request, $this->rules);
 
         try {

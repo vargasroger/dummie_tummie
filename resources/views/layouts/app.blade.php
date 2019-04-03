@@ -72,6 +72,13 @@
         </nav>
 
         <main class="py-4">
+            @if (session('message'))
+                <div class="alert alert-{{ session('message')['class'] ?? 'success' }} text-center" style="border-radius: 0">
+                    <div class="container-fluid">
+                        {{{ session('message')['content'] }}}
+                    </div>
+                </div>
+            @endif
             @yield('content')
         </main>
     </div>
