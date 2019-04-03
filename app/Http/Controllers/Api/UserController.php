@@ -4,23 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use \App\Http\Controllers\Controller;
 use App\User;
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 
 class UserController extends Controller
 {
-    protected $rules = [
-        'first_name' => 'required|string|min:3|max:100',
-        'last_name' => 'required|string|min:3|max:100',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6'
-    ];
-
     public function __construct()
     {
-        // $this->middleware(['api']);
+
     }
 
     public function index()
@@ -32,10 +27,8 @@ class UserController extends Controller
         return new UserCollection($users);
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $this->validate($request, $this->rules);
-
         try {
             DB::beginTransaction();
 
@@ -60,16 +53,20 @@ class UserController extends Controller
         return new UserResource($user);
     }
 
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        $this->rules['email'] .= ',' . $user->id;
-
-        $this->validate($request, $this->rules);
-
         try {
             DB::beginTransaction();
 
-            $user->update($request->all());
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+
+            if ($request->has('password')) {
+                $user->password = bcrypt($request->password);
+            }
+
+            $user->save();
 
             DB::commit();
 
