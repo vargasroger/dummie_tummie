@@ -47,10 +47,10 @@
     </div>
 
     <div class="form-group">
-        <label for="password">Senha *</label>
+        <label for="password">Senha {{ $user->id ? '' : '*'}}</label>
 
         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
-               value="{{ old('password') ?? $user->password }}" required>
+               value="{{ old('password') ?? $user->password }}" {{ $user->id ? '' : 'required'}}>
 
         @if ($errors->has('password'))
             <span class="invalid-feedback">

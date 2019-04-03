@@ -72,19 +72,30 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        unset($user->password);
+        
         return view('users.edit')->with(compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
         $this->rules['email'] .= ',' . $user->id;
+        $this->rules['password'] = 'string|min:6';
 
         $this->validate($request, $this->rules);
 
         try {
             DB::beginTransaction();
 
-            $user->update($request->all());
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->email = $request->email;
+
+            if ($request->has('password')) {
+                $user->password = bcrypt($request->password);
+            }
+
+            $user->save();
 
             DB::commit();
 
