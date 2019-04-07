@@ -45,19 +45,8 @@
             </span>
         @endif
     </div>
-
-    <div class="form-group">
-        <label for="password">Senha {{ $user->id ? '' : '*'}}</label>
-
-        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
-               value="{{ old('password') ?? $user->password }}" {{ $user->id ? '' : 'required'}}>
-
-        @if ($errors->has('password'))
-            <span class="invalid-feedback">
-                <strong>{{ $errors->first('password') }}</strong>
-            </span>
-        @endif
-    </div>
+    {{-- TODO Não permitir o envio do formuário quando a senha for considerada insegura   --}}
+   <form-group-password label="Senha" id="password" name="password" {{ $user->id ? '' : 'required'}}></form-group-password>
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary">{{ $user->id ? 'Atualizar' : 'Inserir' }}</button>
