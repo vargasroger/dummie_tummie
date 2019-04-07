@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use \App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\User;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
@@ -129,4 +132,56 @@ class UserController extends Controller
             throw $e;
         }
     }
+
+    /**
+     * Get users for the data table.
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function getUsersForDataTable(Request $request)
+    {
+        $users = User::all();
+
+        return Response::json([
+            'columns' => [
+                [
+                    'label'=> trans('validation.attributes.name'),
+                    'field'=> 'full_name',
+                    'filterOptions' => [
+                        'enabled' => true, // enable filter for this column
+                        'placeholder' => trans('strings.general.search_placeholder'),
+                        'trigger' => 'enter',
+                    ],
+                ],
+                [
+                     'label' =>  trans('validation.attributes.email'),
+                     'field' => 'email',
+                ],
+                [
+                     'label' =>  trans('labels.user.profile.created_at'),
+                     'field' => 'created_at',
+                     'type' => 'date',
+                     'dateInputFormat' => 'YYYY-MM-DDTHH:mm:ss',
+                     'dateOutputFormat' => 'DD/MM/YY HH:mm ZZ',
+                ],
+            ],
+            'data' => UserResource::collection($users)
+        ]);
+    }
+
+    public function getTableTranslateArray()
+    {
+        return Response::json([
+            'no_results' => trans('strings.search.no_results'),
+            'pagination' => [
+                'next' => trans('pagination.next'),
+                'prev' => trans('pagination.previous'),
+                'of' => trans('pagination.of'),
+                'rows_pages' => trans('pagination.rows_page'),
+            ]
+        ]);
+    }
+
 }

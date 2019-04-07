@@ -145,6 +145,7 @@ return [
     */
 
     'attributes' => [
+        'name'      => 'Name',
         'first_name'=> 'First Name',
         'last_name' => 'Last Name',
         'email'     => 'E-mail Address',

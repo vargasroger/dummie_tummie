@@ -34,6 +34,7 @@ return [
         'incomplete' => 'You must write your own search logic for this system.',
         'title' => 'Search Results',
         'results' => 'Search Results for :query',
+        'no_results' => 'No results to list',
     ],
     'welcome' => 'Welcome to the Dashboard',
     '' => 'Este é um App incrível',

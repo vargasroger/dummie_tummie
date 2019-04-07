@@ -34,6 +34,7 @@ return [
         'incomplete' => 'Você deve escrever sua própria lógica de busca para este sistema.',
         'title' => 'Resultados da busca',
         'results' => 'Resultados da busca por :query',
+        'no_results' => 'Nenhum resultado para listar',
     ],
     'emails' => [
         'auth' => [

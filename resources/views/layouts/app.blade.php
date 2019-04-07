@@ -35,7 +35,7 @@
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('users.index') }}">@lang('Users')</a>
+                                <a class="nav-link" href="{{ route('users.index') }}">@lang('menus.users.main')</a>
                             </li>
                         </ul>
                     @endif
