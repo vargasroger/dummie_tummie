@@ -9,10 +9,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <span>Usuários</span>
+                    <span>@lang('menus.users.main')</span>
 
                     <div class="float-right">
-                        <a href="{{ route('users.create') }}" class="btn btn-secondary">Novo</a>
+                        <a href="{{ route('users.create') }}" class="btn btn-secondary">@lang('labels.general.create_new')</a>
                     </div>
                 </div>
 

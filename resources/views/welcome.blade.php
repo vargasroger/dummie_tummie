@@ -34,6 +34,10 @@
                 position: relative;
             }
 
+            .top {
+                position: absolute;
+                top: 18px;
+            }
             .top-right {
                 position: absolute;
                 right: 10px;
@@ -46,6 +50,9 @@
 
             .title {
                 font-size: 84px;
+            }
+            .sub-title {
+                font-size: 30px;
             }
 
             .links > a {
@@ -65,12 +72,24 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            @if(config('locale.status') && count(config('locale.languages')) > 1)
+                <div class="top links">
+                    <a href="#" style="text-decoration: underline">{{ __('menus.language-picker.langs.'.app()->getLocale()) }}</a>
+
+                    @foreach(array_keys(config('locale.languages')) as $lang)
+                        @if($lang != app()->getLocale())
+                            <a href="{{ '/lang/'.$lang }}" class="dropdown-item">@lang('menus.language-picker.langs.'.$lang)</a>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">@lang('menus.pages.home')</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('register') }}">@lang('menus.pages.register')</a>
+                        <a href="{{ route('login') }}">@lang('menus.pages.login')</a>
                     @endauth
                 </div>
             @endif
@@ -78,6 +97,9 @@
             <div class="content">
                 <div class="title m-b-md">
                     {{ config('app.name', 'Dummie Tummie') }}
+                </div>
+                <div class="sub-title m-b-md">
+                    @lang('strings.pages.welcome.subtitle')
                 </div>
             </div>
         </div>

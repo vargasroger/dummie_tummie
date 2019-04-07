@@ -12,7 +12,7 @@
                     <span>{{ $user->full_name }}</span>
 
                     <div class="float-right">
-                        <a href="{{ route('users.edit', $user) }}" class="btn btn-secondary">Editar</a>
+                        <a href="{{ route('users.edit', $user) }}" class="btn btn-secondary">@lang('labels.users.edit')</a>
                     </div>
                 </div>
                 <div class="card-body">
