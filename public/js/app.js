@@ -2128,8 +2128,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         scales: {
           yAxes: [{
             ticks: {
-              suggestedMin: 50,
-              suggestedMax: 100
+              suggestedMin: 1
             }
           }]
         }
