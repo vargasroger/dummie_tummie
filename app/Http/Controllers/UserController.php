@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -182,6 +183,30 @@ class UserController extends Controller
                 'rows_pages' => trans('pagination.rows_page'),
             ]
         ]);
+    }
+
+    public function dataGrafico()
+    {
+        $labels = $values = [];
+
+        $data = DB::table("users")
+            ->select(DB::raw("CONCAT(YEAR(created_at), LPAD(MONTH(created_at), 2,'0')) as 'month', COUNT(*) as total_month"))
+            ->groupBy(DB::raw("CONCAT(YEAR(created_at), LPAD(MONTH(created_at), 2,'0'))"))
+            ->get();
+        foreach($data AS $row) {
+            $labels[] = Carbon::createFromFormat('Ym', $row->month)->format('m/y');
+            $values[] = $row->total_month;
+        }
+
+        return [
+            'labels' =>$labels,
+            'datasets' => [
+                [
+                    'label' => trans('strings.chart.new_accounts'),
+                    'data' => $values,
+                ]
+            ]
+        ];
     }
 
 }

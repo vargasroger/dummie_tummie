@@ -26,6 +26,7 @@ Route::group([
     'as' => 'users.'
 ], function () {
     Route::get('data-table', 'UserController@getUsersForDataTable')->name('table');
+    Route::get('data-grafico', 'UserController@dataGrafico')->name('grafico');
     Route::get('translate-table', 'UserController@getTableTranslateArray')->name('table.translate');
     Route::get('', 'UserController@index')->name('index');
     Route::get('create', 'UserController@create')->name('create');

@@ -30,6 +30,7 @@ Vue.use(VueGoodTablePlugin);
 
 Vue.component('form-group-password', require('./components/Bootstrap4Password.vue').default);
 Vue.component('DataTable', require('./components/DataTable.vue').default);
+Vue.component('Chart', require('./components/ChartContainer.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

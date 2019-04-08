@@ -23,6 +23,10 @@ return [
         'title' => 'Painel de Controle Administrativo',
         'welcome' => 'Bem-vindo',
     ],
+    'chart' => [
+        'user' => 'Gráfico de Novos Usuários',
+        'new_accounts' => 'Novos Usuários',
+    ],
     'general' => [
         'all_rights_reserved' => 'Todos os direitos reservados.',
         'are_you_sure' => 'Tem certeza?',

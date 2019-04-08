@@ -23,5 +23,6 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => bcrypt('123'),
         'remember_token' => Str::random(10),
+        'created_at' => $faker->dateTimeBetween('-6 months'),
     ];
 });

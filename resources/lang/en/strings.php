@@ -22,6 +22,11 @@ return [
     'dashboard' => [
         'title' => 'Dashboard',
         'welcome' => 'Welcome',
+
+    ],
+    'chart' => [
+        'user' => 'New User\'s Chart',
+        'new_accounts' => 'New Accounts',
     ],
     'general' => [
         'all_rights_reserved' => 'All Rights Reserved.',
