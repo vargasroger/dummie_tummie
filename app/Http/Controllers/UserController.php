@@ -27,11 +27,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::orderBy('first_name', 'asc')
-            ->orderBy('last_name', 'asc')
-            ->paginate(10);
-
-        return view('users.index')->with(compact('users'));
+        return view('users.index');
     }
 
     public function create()

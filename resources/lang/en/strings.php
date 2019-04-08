@@ -22,7 +22,10 @@ return [
     'dashboard' => [
         'title' => 'Dashboard',
         'welcome' => 'Welcome',
-
+    ],
+    'sessions' => [
+        'title' => 'Latest Active Sessions',
+        'user_agent' => 'User Agent',
     ],
     'chart' => [
         'user' => 'New User\'s Chart',

@@ -26,7 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $sessions = App\LogSessions::orderBy('created_at', 'desc')
+            ->limit(5)->get();
+
+        return view('home')->with(compact('sessions'));
     }
 
     public function lang($locale)

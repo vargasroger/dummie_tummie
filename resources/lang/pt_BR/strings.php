@@ -23,6 +23,10 @@ return [
         'title' => 'Painel de Controle Administrativo',
         'welcome' => 'Bem-vindo',
     ],
+    'sessions' => [
+        'title' => 'Ultimas Sessões Ativas',
+        'user_agent' => 'User Agent',
+    ],
     'chart' => [
         'user' => 'Gráfico de Novos Usuários',
         'new_accounts' => 'Novos Usuários',
