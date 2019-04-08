@@ -27,8 +27,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('first_name', 'asc')
-                    ->orderBy('last_name', 'asc')
-                    ->paginate(10);
+            ->orderBy('last_name', 'asc')
+            ->paginate(10);
 
         return view('users.index')->with(compact('users'));
     }
@@ -84,7 +84,7 @@ class UserController extends Controller
     {
         $this->rules['email'] .= ',' . $user->id;
         unset($this->rules['password']);
-        
+
         $this->validate($request, $this->rules);
 
         try {
@@ -147,8 +147,8 @@ class UserController extends Controller
         return Response::json([
             'columns' => [
                 [
-                    'label'=> trans('validation.attributes.name'),
-                    'field'=> 'full_name',
+                    'label' => trans('validation.attributes.name'),
+                    'field' => 'full_name',
                     'filterOptions' => [
                         'enabled' => true, // enable filter for this column
                         'placeholder' => trans('strings.general.search_placeholder'),
@@ -156,15 +156,15 @@ class UserController extends Controller
                     ],
                 ],
                 [
-                     'label' =>  trans('validation.attributes.email'),
-                     'field' => 'email',
+                    'label' => trans('validation.attributes.email'),
+                    'field' => 'email',
                 ],
                 [
-                     'label' =>  trans('labels.user.profile.created_at'),
-                     'field' => 'created_at',
-                     'type' => 'date',
-                     'dateInputFormat' => 'YYYY-MM-DDTHH:mm:ss',
-                     'dateOutputFormat' => 'DD/MM/YY HH:mm ZZ',
+                    'label' => trans('labels.user.profile.created_at'),
+                    'field' => 'created_at',
+                    'type' => 'date',
+                    'dateInputFormat' => 'YYYY-MM-DDTHH:mm:ss',
+                    'dateOutputFormat' => 'DD/MM/YY HH:mm ZZ',
                 ],
             ],
             'data' => UserResource::collection($users)

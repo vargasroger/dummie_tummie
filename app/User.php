@@ -53,4 +53,20 @@ class User extends Authenticatable
     {
         return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
+
+
+    /**
+     *
+     * All users sessions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mySessions()
+    {
+        return $this->hasMany('App\LogSessions');
+    }
+
+    public function currentSession() {
+        return $this->hasOne('App\LogSessions')->orderBy('created_at', 'desc');
+    }
 }
